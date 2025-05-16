@@ -21,10 +21,6 @@ class HPCKit::Slurm::Client
     @connection.get("/slurm/#{SLURM_RESTD_VERSION}/jobs")
   end
 
-  def jobs_db(start_time, end_time)
-    @connection.get("/slurmdb/#{SLURM_RESTD_VERSION}/jobs?start_time=#{start_time}&end_time=#{end_time}")
-  end
-
   def job(job_id)
     @connection.get("/slurm/#{SLURM_RESTD_VERSION}/job/#{job_id}")
   end

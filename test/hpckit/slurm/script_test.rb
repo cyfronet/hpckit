@@ -29,7 +29,7 @@ class HPCKit::Slurm::ScriptTest < Minitest::Test
 
   def test_extract_options
     options = {
-      time_limit: { set: true, infinite: false, number: 360 + 2 * 60 + 3 },
+      time_limit: { set: true, infinite: false, number: 60 + 2 + 1 },
       partition: "plgrid-now",
       account: "plggrant-cpu",
       mail_user: "foo@bar.local"

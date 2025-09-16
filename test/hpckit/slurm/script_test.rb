@@ -9,6 +9,7 @@ class HPCKit::Slurm::ScriptTest < Minitest::Test
     #SBATCH -p plgrid-now
     #SBATCH -A plggrant-cpu
     #SBATCH --mail-user=foo@bar.local
+    #SBATCH --gres=gpu:1
 
     echo hello
 
@@ -32,7 +33,8 @@ class HPCKit::Slurm::ScriptTest < Minitest::Test
       time_limit: { set: true, infinite: false, number: 60 + 2 + 1 },
       partition: "plgrid-now",
       account: "plggrant-cpu",
-      mail_user: "foo@bar.local"
+      mail_user: "foo@bar.local",
+      tres_per_node: "gres/gpu:1"
     }
 
     assert_equal options, HPCKit::Slurm::Script.new(SBATCH_SCRIPT).options

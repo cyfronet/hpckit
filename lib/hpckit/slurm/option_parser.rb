@@ -38,7 +38,7 @@ class HPCKit::Slurm::OptionParser
     # opts.on("-", "--", "Dictionary of environment entries.") { |v| @options[:environment] = v } # object
     opts.on("--exclusive=USER_OR_MCS", "The job allocation can share nodes just other users with the \"user\" option or with the \"mcs\" option).") { |v| @options[:exclusive] = v } # enum - user, mcs, true, false
     opts.on("--get-user-env=TIMEOUT", "Load new login environment for user on job node.") { |v| @options[:get_user_environment] = v } #boolean
-    opts.on("--gres=LIST", "Specifies a comma delimited list of generic consumable resources.") { |v| @options[:gres] = v }
+    opts.on("--gres=LIST", "Specifies a comma delimited list of generic consumable resources.") { |v| @options[:tres_per_node] = "gres/#{v}" }
     opts.on("--gres-flags=TYPE", "Specify generic resource task binding options.") { |v| @options[:gres_flags] = v } # enum - disable-binding, enforce-binding
     opts.on("-", "--", "Requested binding of tasks to GPU.") { |v| @options[:gpu_binding] = v }
     opts.on("-", "--", "Requested GPU frequency.") { |v| @options[:gpu_frequency] = v }

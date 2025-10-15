@@ -28,7 +28,7 @@ module HPCKit::Slurm
         hours   = (m[:h1] || m[:h2]).to_i
         days    = m[:d1].to_i
 
-        (24 * days + hours) * 360 + minutes * 60 + seconds
+        (24 * days + hours) * 60 + minutes + (seconds == 0 ? 0 : 1)
       end
     end
   end

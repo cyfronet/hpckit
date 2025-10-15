@@ -4,7 +4,7 @@ require "test_helper"
 require "json"
 require "hpckit/slurm/backends/mock"
 
-class HPCKit::Slurm::TestRestd < Minitest::Test
+class HPCKit::Slurm::RestdTest < Minitest::Test
   def setup
     @backend = HPCKit::Slurm::Backends::Mock.new
     @client = HPCKit::Slurm::Restd.new(@backend)
@@ -23,7 +23,9 @@ class HPCKit::Slurm::TestRestd < Minitest::Test
   end
 
   def test_success_post_invocation
-    @backend.expects_post("/post/path", File.read("test/fixtures/200_job_created_response.txt"))
+    @backend.expects_post("/post/path", File.read("test/fixtures/200_job_created_response.txt")) do |value|
+      value.include?("data-payload")
+    end
 
     response = @client.post("/post/path", "data-payload", "Content-Type" => "application/json")
 
